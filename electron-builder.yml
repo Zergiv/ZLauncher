@@ -45,6 +45,10 @@ linux:
   description: 'Launcher modificado que permite el acceso a los modpacks de Zergiv2. Todos los mods, configuraciones y actualizaciones son automáticas.'
   category: 'Game'
 
+publish:
+  - provider: 'github'
+    owner: 'Zergiv'
+    repo: 'ZLauncher'
 
 directories:
   buildResources: 'build'
