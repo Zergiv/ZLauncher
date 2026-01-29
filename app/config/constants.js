@@ -1,6 +1,6 @@
-const APP_DATA_NAME = 'pylauncher'
-const DISTRIBUTION_URL = 'https://panylimones.es/nebula/distribution.json'
-const DISTRIBUTION_META_URL = 'https://panylimones.es/nebula/distrometa.json'
+const APP_DATA_NAME = 'ZLauncher'
+const DISTRIBUTION_URL = 'https://nebula.zergiv2.tech/nebula/distribution.json'
+const DISTRIBUTION_META_URL = 'https://nebula.zergiv2.tech/nebula/distrometa.json'
 
 const DEFAULT_DISTRIBUTION_META = {}
 const DEFAULT_SERVER_META = { allowOptIn: true }
