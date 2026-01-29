@@ -222,10 +222,11 @@ let win
 function createWindow() {
 
     win = new BrowserWindow({
-        width: 980,
-        height: 552,
+        width: 1280,
+        height: 720,
         minWidth: 1280,
         minHeight: 720,
+        show: false,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
@@ -237,6 +238,10 @@ function createWindow() {
     })
     remoteMain.enable(win.webContents)
 
+    win.once('ready-to-show', () => {
+        win.show()
+    })
+
     let backgroundDir = fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds'))
     ejse.data('bkid', Array.from(backgroundDir.values())[Math.floor((Math.random() * backgroundDir.length))])
 
@@ -246,10 +251,6 @@ function createWindow() {
     })
 
     win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
-
-    /*win.once('ready-to-show', () => {
-        win.show()
-    })*/
 
     win.removeMenu()
 
