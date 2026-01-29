@@ -226,7 +226,6 @@ function createWindow() {
         height: 720,
         minWidth: 1280,
         minHeight: 720,
-        show: false,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
@@ -237,10 +236,6 @@ function createWindow() {
         backgroundColor: '#151714'
     })
     remoteMain.enable(win.webContents)
-
-    win.once('ready-to-show', () => {
-        win.show()
-    })
 
     let backgroundDir = fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds'))
     ejse.data('bkid', Array.from(backgroundDir.values())[Math.floor((Math.random() * backgroundDir.length))])
