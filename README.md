@@ -8,4 +8,4 @@
 
 ---
 
-<p align="center"> Launcher modificado por Zergiv2, instalación de minecraft y mods automática<a href="https://github.com/dscalzi/HeliosLauncher"> repositorio original</a>.</p>
+<p align="center"> Launcher modificado por Zergiv2, instalación de minecraft y mods automática<a href="https://github.com/dscalzi/HeliosLauncher" >repositorio original</a>.</p>
