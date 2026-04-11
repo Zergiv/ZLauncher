@@ -13,6 +13,7 @@ const { LoggerUtil }                 = require('helios-core')
 const Lang                           = require('./assets/js/langloader')
 
 const loggerUICore             = LoggerUtil.getLogger('UICore')
+
 const loggerAutoUpdater        = LoggerUtil.getLogger('AutoUpdater')
 
 // Log deprecation and process warnings.

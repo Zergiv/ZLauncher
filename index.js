@@ -225,8 +225,8 @@ let win
 function createWindow() {
 
     win = new BrowserWindow({
-        width: 1078,
-        height: 607,
+        width: 1600,
+        height: 900,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
@@ -245,6 +245,10 @@ function createWindow() {
     Object.entries(data).forEach(([key, val]) => ejse.data(key, val))
 
     win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
+
+    win.webContents.on('did-finish-load', () => {
+        win.webContents.setZoomFactor(1.63)
+    })
 
     /*win.once('ready-to-show', () => {
         win.show()
