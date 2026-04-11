@@ -4,11 +4,11 @@
 title = "ZLauncher"
 
 [ejs.landing]
-mediaGitHubURL = "https://github.com/Zergiv/ZLauncher"
+mediaGitHubURL = "https://zlauncher.zergiv2.tech/"
 mediaXURL = "#"
 mediaInstagramURL = "#"
-mediaYouTubeURL = "#"
-mediaDiscordURL = "https://discord.gg/zNWUXdt"
+mediaYouTubeURL = "https://www.youtube.com/@zergiv2102"
+mediaDiscordURL = "https://discord.com/users/377860450294956042"
 
 [ejs.settings]
 sourceGithubLink = "https://github.com/Zergiv/ZLauncher"

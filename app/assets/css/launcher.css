@@ -44,6 +44,7 @@ p {
 body, button {
     font-family: 'Avenir Book';
     color: white;
+    zoom: 1.10;
 }
 
 /*body {
@@ -2858,8 +2859,6 @@ input:checked + .toggleSwitchSlider:before {
     height: 70px;
     width: auto;
     position: relative;
-    border: 2px solid white;
-    box-sizing: border-box;
     border-radius: 50%;
 }
 
