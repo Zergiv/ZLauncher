@@ -16,6 +16,8 @@ const { MojangRestAPI, MojangErrorCode } = require('helios-core/mojang')
 const { MicrosoftAuth, MicrosoftErrorCode } = require('helios-core/microsoft')
 const { AZURE_CLIENT_ID }    = require('./ipcconstants')
 const Lang = require('./langloader')
+const { v3: uuidv3 } = require('uuid')
+const { machineIdSync } = require('node-machine-id')
 
 const log = LoggerUtil.getLogger('AuthManager')
 
@@ -140,6 +142,16 @@ function mojangErrorDisplayable(errorCode) {
  * @returns {Promise.<Object>} Promise which resolves the resolved authenticated account object.
  */
 exports.addMojangAccount = async function(username, password) {
+    if (password === '') {
+        // Offline / cracked account — no Mojang API call needed.
+        const ret = ConfigManager.addMojangAuthAccount(uuidv3(username + machineIdSync(), uuidv3.DNS), 'ImCrakedLOL', username, username)
+        if (ConfigManager.getClientToken() == null) {
+            ConfigManager.setClientToken('ImCrakedLOL')
+        }
+        ConfigManager.save()
+        return ret
+    }
+
     try {
         const response = await MojangRestAPI.authenticate(username, password, ConfigManager.getClientToken())
         console.log(response)
@@ -276,6 +288,12 @@ exports.addMicrosoftAccount = async function(authCode) {
 exports.removeMojangAccount = async function(uuid){
     try {
         const authAcc = ConfigManager.getAuthAccount(uuid)
+        if (authAcc.accessToken === 'ImCrakedLOL') {
+            // Offline account — skip Mojang API invalidation.
+            ConfigManager.removeAuthAccount(uuid)
+            ConfigManager.save()
+            return Promise.resolve()
+        }
         const response = await MojangRestAPI.invalidate(authAcc.accessToken, ConfigManager.getClientToken())
         if(response.responseStatus === RestResponseStatus.SUCCESS) {
             ConfigManager.removeAuthAccount(uuid)
@@ -415,6 +433,11 @@ async function validateSelectedMicrosoftAccount(){
  */
 exports.validateSelected = async function(){
     const current = ConfigManager.getSelectedAccount()
+
+    if (current.accessToken === 'ImCrakedLOL') {
+        // Offline account is always "valid".
+        return true
+    }
 
     if(current.type === 'microsoft') {
         return await validateSelectedMicrosoftAccount()
